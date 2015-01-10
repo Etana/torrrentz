@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "torrrentz",
+  "description": "add imdb and magnet links, also remove porn (unless xxx is in query) and duplicates (unless + is in query)",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": ["https://torrentz.eu/*"],
+      "js": ["jquery.js", "torrrentz.js"]
+    }
+  ],
+  "icons": { "16": "icon16.png",
+             "48": "icon48.png",
+            "128": "icon128.png" }
+}
