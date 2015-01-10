@@ -3,7 +3,7 @@
 
   "name": "torrrentz",
   "description": "add imdb and magnet links, also remove porn (unless xxx is in query) and duplicates (unless + is in query)",
-  "version": "1.0",
+  "version": "1.0.1",
 
   "content_scripts": [
     {

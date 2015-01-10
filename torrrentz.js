@@ -1,8 +1,8 @@
 (function(){
   var ec=encodeURIComponent,
       mm=function(h,n,t){return '<a style=float:left;margin-right:1px href=magnet:?xt=urn:btih:'+ec(h.toUpperCase())+'&dn='+ec(n)+t.map(function(v){return '&tr='+ec(v)}).join()+'>(m)</a>'},
-     pu=function(t){return t.replace(/\[.*?\]/g,'').replace(/[\.\[\]-]/g,' ').toLowerCase().replace(/(.*)s0*([0-9]+?)e0*([0-9]+).*$/,'$1$2x$3').replace(/\b(web ?dl|(brr?|hd|web|dvd|cam)rip|dvdscr|eztv|hd(tv|cam)|[hx]264|yify|xvid|bluray|ettv|ac3|mkv|(720|480|1080)p)\b.*/,'').replace(/\s+/g,' ').trim()},
-      mi=function(n){return '<a style=float:left;margin-right:3px href=https://www.google.com/search?btnI&q=site:imdb.com%2Ftitle%2F%20'+ec(n)+'>(i)</a>'};
+     pu=function(t){return t.replace(/\[.*?\]/g,'').replace(/[\.\[\]-]/g,' ').toLowerCase().replace(/(.*)s0*([0-9]+?)e0*([0-9]+).*$/,'$1$2x$3').replace(/\b(web ?dl|(brr?|hd|web|dvd|cam|bd)rip|truefrench|dvdscr|eztv|hd(tv|cam)|[hx]264|yify|xvid|bluray|ettv|ac3|mkv|(720|480|1080)p)\b.*/,'').replace(/\s+/g,' ').trim()},
+      mi=function(n){return '<a style=float:left;margin-right:3px href=https://www.google.com/search?btnI&q=site:imdb.com%2Ftitle%2F%20'+ec(n.replace(/\s+[0-9]+x[0-9]+\s+/,' '))+'>(i)</a>'};
 
   // add links to upper left to result page
   if(/^\/[a-f0-9]{40}$/.test(location.pathname))
