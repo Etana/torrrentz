@@ -1,6 +1,7 @@
 // small jquery implemntation
 var $ = function(c, s) {
-  if(this.__proto__.constructor !== $) { return new $(c,s) };
+  var t= this;
+  if(t.__proto__.constructor !== $) { return new $(c,s) };
 
   if(s) {
     var d = document.implementation.createHTMLDocument().documentElement; 
@@ -23,32 +24,32 @@ var $ = function(c, s) {
   } else if(c instanceof Array) {} else {
     c = [c];
   };
+   
+  t.s = s;
+  t.c = c;
 
-  this.s = s;
-  this.c = c;
-
-  this.remove = function() { c.forEach(function(e){ e.parentNode.removeChild(e) }) };
-  this.map = function(f) { return c.map(f) };
-  this.insertBefore = function(e) { var s = $(e).c[0]; c.reverse(); c.forEach(function(e){ s.parentNode.insertBefore(e, s) }); return this; }
-  this.on = function(n, f) { c.forEach(function(e){ e.addEventListener(n, f) }) };
-  this.text = function() { return c[0].innerText };
-  this.parent = function() { return $(c[0].parentNode); }
+  t.remove = function() { c.forEach(function(e){ e.parentNode.removeChild(e) }) };
+  t.map = function(f) { return c.map(f) };
+  t.insertBefore = function(e) { var s = $(e).c[0]; c.reverse(); c.forEach(function(e){ s.parentNode.insertBefore(e, s) }); return t; }
+  t.on = function(n, f) { c.forEach(function(e){ e.addEventListener(n, f) }) };
+  t.text = function() { return c[0].innerText };
+  t.parent = function() { return $(c[0].parentNode); }
 };
 
 $.get = function(u) {
   var r = new XMLHttpRequest();
   r.open('GET', u, false);
-  r.send(null);
+  r.send();
 
-  if (r.status === 200) {
-    return r.responseText
-  }
+  return r.responseText
 };
 
-var ec=encodeURIComponent,
-    mm=function(h,n,t){return '<a style=float:left;margin-right:1px href=magnet:?xt=urn:btih:'+ec(h.toUpperCase())+'&dn='+ec(n)+t.map(function(v){return '&tr='+ec(v)}).join()+'>(m)</a>'},
-    pu=function(t){return t.replace(/\[.*?\]/g,'').replace(/[\.\[\]-]/g,' ').toLowerCase().replace(/(.*)s0*([0-9]+?)e0*([0-9]+).*$/,'$1$2x$3').replace(/\b(web ?dl|(brr?|hd|web|dvd|cam|bd) ?rip|truefrench|dvd ?scr|eztv|hd(tv|cam)|[hx]264|yify|xvid|bluray|ettv|ac3|mkv|(720|480|1080)p)\b.*/,'').replace(/\s+/g,' ').trim()},
-    mi=function(n){return '<a style=float:left;margin-right:3px href=https://www.google.com/search?btnI&q=site:imdb.com%2Ftitle%2F%20'+ec(n.replace(/\s+[0-9]+x[0-9]+\s+/,' '))+'>(i)</a>'};
+var com ='<a style=float:left;margin-right:3px href=',
+    ec=encodeURIComponent,
+    mm=function(h,n,t){return com+'magnet:?xt=urn:btih:'+ec(h.toUpperCase())+'&dn='+ec(n)+t.map(function(v){return '&tr='+ec(v)}).join()+'>(m)</a>'},
+    pu=function(t){return t.replace(/\[.*?\]/g,'').replace(/[\.\[\]-]/g,' ').toLowerCase().replace(/(.*)s0*([0-9]+?)e0*([0-9]+).*$/,'$1$2x$3').replace(/\b((web|brr?|[hb]d|dvd|cam) ?(rip|scr|tv|cam)|truefrench|screener|[hx]264|yify|xvid|bluray|ettv|ac3|mkv|(72|48|108)0p)\b.*/,'').replace(/\s+/g,' ').trim()},
+    mi=function(n){return com+'https://www.google.com/search?btnI&q=site:imdb.com%2Ftitle%20'+ec(n.replace(/\s+[0-9]+x[0-9]+\s+/,' '))+'>(i)</a>'};
+
 
 // add links to upper left to result page
 if(/^\/[a-f0-9]{40}$/.test(location.pathname))
