@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "torrrentz",
   "description": "useful things for torrentz",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "content_scripts": [
     {
       "matches": ["*://torrentz.eu/*","*://torrentz.ch/*","*://torrentz.me/*","*://torrentz.in/*","*://torrentz.com/*"],

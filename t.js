@@ -50,7 +50,7 @@ var com ='<a style=float:left;margin-right:3px href=',
     mm=function(h,n,t){return com+'magnet:?xt=urn:btih:'+ec(h.toUpperCase())+'&dn='+ec(n)+t.map(function(v){return '&tr='+ec(v)}).join()+'>(m)</a>'},
     pu=function(t){return t.replace(/\[.*?\]/g,'').replace(/[\.\[\]-]/g,' ').toLowerCase().replace(/(.*)s0*([0-9]+?)e0*([0-9]+).*$/,'$1$2x$3').replace(/\b((web|brr?|[hb]d|dvd|cam) ?(rip|scr|tv|cam)|truefrench|screener|[hx]264|yify|xvid|bluray|ettv|ac3|mkv|(72|48|108)0p)\b.*/,'').replace(/\s+/g,' ').trim()},
     pur=function(t){return pu(t).replace(/\s*\b[0-9]+x[0-9]+\b.*/,'')},
-    f=function(w){return w.html().replace(/<a.*?<\/a>/g,' ').match(/\b(tv|movies)\b/)},
+    f=function(w){return w.html().replace(/<a href="\/.*?<\/a>/g,' ').replace(/<span.*?<\/span>/g,' ').replace(/<.*?>/g, ' ').match(/\b(tv|movies)\b/)},
     mi=function(n,w){if(f(w))return com+'https://www.google.com/search?btnI&q=site:imdb.com%2Ftitle%20'+ec(n.replace(/\s+[0-9]+x[0-9]+\s+/,' '))+'>(i)</a>';return ''};
     ti=function(n,w){if(f(w))return com+'https://www.google.com/search?btnI&q=site:youtube.com%2Fwatch%20trailer%20'+ec(n.replace(/\s+[0-9]+x[0-9]+\s+/,' '))+'>(t)</a>';return ''};
 
